@@ -1,47 +1,36 @@
-# DevHack 2026 - Proyecto Fullstack
-Documentación del Proyecto: DevHack 2026
-Descripción General
-DevHack 2026 es una plataforma integral (Fullstack) diseñada para la gestión y registro de equipos en eventos tecnológicos. El sistema incluye una interfaz de usuario interactiva, un servidor de procesamiento de datos y persistencia en una base de datos relacional.
+# Proyecto: DevHack 2026 - Plataforma Fullstack
 
-Servicios y Despliegue
-La aplicación se encuentra distribuida en los siguientes servicios de infraestructura:
+## Descripción General
+DevHack 2026 es una plataforma integral diseñada para la gestión, promoción y registro de equipos para eventos tecnológicos. El sistema se basa en una arquitectura desacoplada con un cliente interactivo, un servidor de lógica de negocio y una base de datos relacional alojada en la nube.
 
-Frontend (Interfaz Web): Desplegado en Netlify. Gestiona la experiencia del usuario y las validaciones de cliente.
+## Infraestructura y Despliegue
+La aplicación utiliza los siguientes servicios para su funcionamiento en producción:
 
-Backend (API): Alojado en Render. Se encarga de la lógica de negocio y la comunicación con la base de datos.
+* **Interfaz de Usuario (Frontend):** Desplegada en **Netlify**. Gestiona la navegación, interactividad y validaciones de cliente.
+* **Servidor de Aplicaciones (Backend):** Alojado en **Render**. Administra los procesos lógicos y la comunicación con servicios externos.
+* **Persistencia de Datos:** Implementada en **MySQL** y distribuida en la nube mediante **Aiven**, permitiendo el acceso global y seguro a la información.
+* **Diseño y Prototipado:** El modelado visual y la arquitectura de experiencia de usuario (UX/UI) se encuentran documentados en **Figma**.
 
-Base de Datos: Implementada en MySQL. Almacena la información de los escuadrones registrados de forma persistente.
+## Arquitectura del Sistema
 
-Diseño (Prototipado): El modelado visual y la arquitectura de información se encuentran en Figma.
+### 1. Frontend (Angular 17+)
+Desarrollado con componentes independientes (Standalone) para una carga optimizada:
+* **Galería Multimedia:** Carrusel de flujo infinito con soporte para video e imagen y controladores de audio dinámicos.
+* **Control de Registro:** Implementación de un temporizador de 60 segundos por sesión. Al agotarse el tiempo, el sistema bloquea el acceso al formulario para garantizar la integridad de la red.
+* **Seguridad y Validación:** Integración de Google reCAPTCHA v2 y filtros de dominio exclusivos para cuentas de Gmail.
 
-Arquitectura y Funcionalidades
-1. Frontend (Angular 17+)
-La interfaz fue desarrollada utilizando componentes independientes (Standalone) para optimizar la carga. Sus funciones principales son:
+### 2. Backend (Python / FastAPI)
+Funciona como el núcleo de procesamiento de datos:
+* **Procesamiento REST:** Recibe y valida los payloads enviados desde el cliente (Nombre de equipo, correo y especialidad).
+* **Gestión de Base de Datos:** Realiza la conexión remota con el servidor MySQL para el registro y consulta de escuadrones activos en tiempo real.
 
-Galería Multimedia: Presentación dinámica de contenido mediante un carrusel infinito que soporta video y fotografía con gestión de audio.
+### 3. Integraciones de Terceros
+* **EmailJS:** Automatización de notificaciones de confirmación enviadas al correo del usuario tras un registro exitoso.
 
-Control de Sesión: Implementación de un temporizador de 60 segundos. Al expirar, el sistema bloquea el acceso al formulario de registro para garantizar la disponibilidad de la red.
+## Enlaces del Proyecto
+* **Página Web (Netlify):** https://devhack2026summer.netlify.app/
+* **Servicios API (Render):** https://hackathon-backend-u9kp.onrender.com/docs
+* **Prototipo de Diseño (Figma):** https://www.figma.com/design/AkQS4zx98vvueRKNzXq9ZE/Dise%C3%B1o-Hackaton?node-id=0-1&t=RA5R8K1bBX6ASTas-1
 
-Seguridad de Usuario: Integración de Google reCAPTCHA v2 para prevenir registros automatizados (bots) y validación de sintaxis para correos electrónicos con dominio exclusivo de Gmail.
-
-2. Backend (Python / FastAPI)
-El servidor actúa como intermediario seguro entre el usuario y los datos:
-
-Procesamiento de Registros: Recibe y sanitiza los datos enviados desde el formulario (nombre de equipo, correo y especialidad).
-
-Gestión de Datos: Realiza consultas e inserciones en el servidor MySQL.
-
-Sincronización: Expone un endpoint para consultar en tiempo real la lista de escuadrones ya indexados en el sistema.
-
-3. Notificaciones y Terceros
-EmailJS: Se utiliza para el envío automático de correos de confirmación una vez que el backend valida el registro exitoso.
-
-Enlaces del Proyecto
-Sitio Web (Netlify): [AQUÍ_VA_TU_LINK_DE_NETLIFY]
-
-API (Render): [AQUÍ_VA_TU_LINK_DE_RENDER]
-
-Prototipo (Figma): [AQUÍ_VA_TU_LINK_DE_FIGMA]
-
-Notas de Entrega
-El código fuente está organizado en una estructura de monorepo bajo las carpetas /frontend y /backend. Para la evaluación de la arquitectura, se puede revisar la lógica de conexión en el archivo de configuración del servidor y los modelos de datos en el directorio correspondiente.
+---
+*Este repositorio sigue una estructura de monorepo organizada en las carpetas `/frontend` y `/backend`.*
