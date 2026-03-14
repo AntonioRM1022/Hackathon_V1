@@ -1,0 +1,144 @@
+<div class="info-page">
+  <div class="main-container">
+    <header class="info-header">
+      <div class="header-content">
+        <div class="badge">
+          <span class="line"></span>
+          <span class="badge-text">HACKATHON 2026</span>
+        </div>
+
+        <h1 class="title-main">¿Qué es <span class="neon-blue">DevHack</span>?</h1>
+
+        <p class="description">
+          El epicentro de la innovación tecnológica donde el código cobra vida. Un espacio diseñado
+          para mentes disruptivas que buscan transformar el futuro a través de la colaboración y el
+          desarrollo de vanguardia.
+        </p>
+      </div>
+
+      <button class="btn-register" routerLink="/registro">Registrarse ahora</button>
+    </header>
+
+    <section class="features-grid">
+      <div class="feature-card">
+        <div class="icon-container">
+          <img src="/terminal.png" class="card-icon" />
+        </div>
+        <h3>Talleres</h3>
+        <p>
+          Sesiones técnicas inmersivas lideradas por expertos. Aprende nuevas arquitecturas,
+          lenguajes y herramientas en entornos de desarrollo reales.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon-container">
+          <img src="/megafono.png" class="card-icon" />
+        </div>
+        <h3>Conferencias</h3>
+        <p>
+          Explora las tendencias que están definiendo el mañana. Ponencias magistrales con líderes
+          globales de la industria.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="icon-container">
+          <img src="/global.png" class="card-icon" />
+        </div>
+        <h3>Networking</h3>
+        <p>
+          Expande tu red profesional. Conecta con reclutadores, fundadores de startups y
+          desarrolladores de todo el ecosistema.
+        </p>
+      </div>
+    </section>
+
+    <section class="ecosystem-section">
+      <div class="section-header">
+        <h2 class="cyber-title">GALERÍA DEVHACK</h2>
+        <div class="cyber-line"></div>
+      </div>
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <div class="carousel-card" *ngFor="let item of listaVideosInfinitos">
+            <video
+              *ngIf="item.type === 'video'"
+              autoplay
+              [muted]="item.muted"
+              [attr.muted]="item.muted ? '' : null"
+              [volume]="item.volume"
+              loop
+              playsinline
+            >
+              <source [src]="item.src" type="video/mp4" />
+            </video>
+
+            <img *ngIf="item.type === 'image'" [src]="item.src" [alt]="item.title" />
+
+            <div class="carousel-overlay">
+              <div class="info-text">
+                <span class="tag">{{ item.tag }}</span>
+                <h3>{{ item.title }}</h3>
+              </div>
+
+              <div class="volume-controls" *ngIf="item.type === 'video'">
+                <button (click)="toggleSound(item)" class="sound-control-btn-estilizado">
+                  <span *ngIf="item.muted || item.volume === 0">🔇</span>
+                  <span *ngIf="!item.muted && (item.volume || 0) > 0">🔊</span>
+                </button>
+
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  [value]="item.volume"
+                  (input)="setVolume(item, $event)"
+                  class="volume-slider"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="location-section">
+      <div class="section-title">
+        <h2>Ubicación</h2>
+      </div>
+
+      <div class="location-grid">
+        <div class="map-container">
+          <iframe
+            width="100%"
+            height="100%"
+            style="border: 0"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps?q=Centro+de+Convenciones+Ciudad+de+Mexico&output=embed"
+          >
+          </iframe>
+        </div>
+
+        <div class="info-card-location">
+          <span class="label-muted">DIRECCIÓN</span>
+
+          <h3>Centro de Convenciones CDMX</h3>
+
+          <p class="text-muted">
+            Av. del Conscripto 311, Lomas de Sotelo, Miguel Hidalgo, Ciudad de México
+          </p>
+
+          <ul class="location-details">
+            <li><span class="dot-cyan"></span> Apertura de puertas: 08:00 AM</li>
+            <li><span class="dot-cyan"></span> Estacionamiento disponible</li>
+          </ul>
+
+          <button class="btn-map-outline" (click)="irAKFC()">Cómo llegar</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="hero-section">
+  <main class="hero-content">
+    <div class="image-container float-anim">
+      <img src="/banner.webp" alt="Hackathon Developers" class="hero-image" />
+    </div>
+
+    <div class="text-container">
+      <div class="countdown-block fade-in-1">
+        <p class="starts-in">INICIA EN:</p>
+        <div class="timer">
+          <div class="time-circle">
+            <span class="number">{{ days }}</span
+            ><span class="label">DIAS</span>
+          </div>
+          <div class="time-circle">
+            <span class="number">{{ hours }}</span
+            ><span class="label">HORAS</span>
+          </div>
+          <div class="time-circle">
+            <span class="number">{{ minutes }}</span
+            ><span class="label">MINS</span>
+          </div>
+          <div class="time-circle seconds-circle pulse-anim">
+            <span class="number blue-text">{{ seconds }}</span>
+            <span class="label">SEGS</span>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="hero-title fade-in-2">HACKATHON DE<br />DESARROLLADORES<br />2026</h1>
+
+      <p class="hero-description fade-in-3">
+        Listo para una prueba de resistencia y estres para demostrar tus habilidades.
+      </p>
+
+      <div class="hero-actions fade-in-4">
+        <button class="btn-outlined" routerLink="/informacion">VER DESAFIOS</button>
+
+        <button class="btn-solid-blue" routerLink="/registro">INSCRIPCION GRATIS</button>
+      </div>
+    </div>
+  </main>
+  <section class="hero-features fade-in-5">
+    <div class="feature-card card-hover">
+      <div class="feature-icon-container">
+        <img src="/usuarios.png" alt="Networking" class="feature-img" />
+      </div>
+      <h3 class="feature-title">Networking de Élite</h3>
+      <p class="feature-text">
+        Conecta con los ingenieros más talentosos de la región y mentores de las Big Tech mundiales.
+      </p>
+    </div>
+
+    <div class="feature-card card-hover highlight-card">
+      <div class="feature-icon-container1">
+        <img src="/trofeos.png" alt="Premios" class="feature-img" />
+      </div>
+      <h3 class="feature-title">Premios de Impacto</h3>
+      <p class="feature-text">
+        Más de $50,000 USD en premios, becas de formación avanzada y kits de hardware premium.
+      </p>
+    </div>
+
+    <div class="feature-card card-hover">
+      <div class="feature-icon-container">
+        <img src="/terminal.png" alt="Stacks" class="feature-img" />
+      </div>
+      <h3 class="feature-title">Stacks de Vanguardia</h3>
+      <p class="feature-text">
+        Acceso a APIs exclusivas, servicios cloud ilimitados y las últimas herramientas de IA
+        generativa.
+      </p>
+    </div>
+  </section>
+</div>

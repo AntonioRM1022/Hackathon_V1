@@ -1,0 +1,103 @@
+<section class="registration-section" id="registro">
+  <div class="scan-line"></div>
+
+  <div class="session-timer-badge" [class.danger-timer]="tiempoSesion < 60">
+    Para que practiques la velocidad tienes: <span class="timer-value">{{ formatearTiempoSesion }}</span>
+  </div>
+
+  <div class="transmission-badge"><span class="dot"></span> TRANSMISIÓN ENTRANTE</div>
+
+  <h1 class="secure-title glitch-effect" [attr.data-text]="'REGISTRA TU EQUIPO'">REGISTRA TU EQUIPO</h1>
+
+  <p class="reg-subtitle">
+    Iniciando protocolo de reclutamiento... El vacío digital espera a tu escuadrón para la DevHack 2026.
+  </p>
+
+  <div class="countdown-container">
+    <div class="count-box"><span class="count-num">{{ days }}</span><span class="count-label">DÍAS</span></div>
+    <div class="count-box"><span class="count-num">{{ hours }}</span><span class="count-label">HORAS</span></div>
+    <div class="count-box"><span class="count-num">{{ minutes }}</span><span class="count-label">MINS</span></div>
+    <div class="count-box"><span class="count-num">{{ seconds }}</span><span class="count-label">SEGS</span></div>
+  </div>
+
+  <div class="registration-container">
+    
+    <div class="registration-card" *ngIf="!formularioBloqueado">
+      <div class="shield-icon">🛡️</div>
+
+      <form (submit)="onSubmit($event)">
+        <div class="form-row">
+          <div class="input-group">
+            <label>NOMBRE DEL EQUIPO</label>
+            <input type="text" name="nombre_equipo" [(ngModel)]="registro.nombre_equipo" placeholder="ID del escuadrón..." autocomplete="off" required />
+          </div>
+
+          <div class="input-group">
+            <label>DIRECCIÓN NEURAL (EMAIL)</label>
+            <input type="email" name="correo" [(ngModel)]="registro.correo" placeholder="agente@gmail.com" autocomplete="off" required />
+            <small class="input-hint">* Solo @gmail.com permitido</small>
+          </div>
+        </div>
+
+        <div class="specializations-group">
+          <label>ESPECIALIDAD TÉCNICA PRINCIPAL</label>
+          <div class="tags-grid">
+            <button type="button" *ngFor="let opc of opciones" class="tag-btn" [class.active]="registro.especialidad === opc" (click)="seleccionarEspecialidad(opc)">
+              {{ opc }}
+            </button>
+          </div>
+        </div>
+
+        <div class="captcha-group">
+          <label class="PROTOCOLO">PROTOCOLO DE SEGURIDAD NEURAL</label>
+          <div class="recaptcha-wrapper">
+            <re-captcha siteKey="6LeAeYksAAAAAPLeaFkA7PeTMNTAAVizh6fh8uav" (resolved)="resolved($event)"></re-captcha>
+          </div>
+        </div>
+
+        <button type="submit" class="initiate-btn" [disabled]="!registro.especialidad || !registro.nombre_equipo || !captchaToken">
+          INICIAR REGISTRO😈
+        </button>
+      </form>
+
+      <p class="terms">Al ejecutar este registro, aceptas los protocolos de DevHack.</p>
+    </div>
+
+    <div class="registration-card expired-card" *ngIf="formularioBloqueado">
+      <h2 class="expired-title">ACCESO EXPIRADO</h2>
+      <p class="expired-text">
+        El tiempo de conexión segura ha finalizado. El formulario ha sido bloqueado para proteger la integridad de la red.
+        <br><br>
+        <span class="status-fail">PROTOCOLO DE SEGURIDAD: ACTIVADO</span>
+      </p>
+        </div>
+
+    <div class="squads-terminal">
+      <div class="terminal-header">
+        <span class="status-light"></span> LISTADO DE ESCUADRONES ACTIVOS
+      </div>
+      <div class="terminal-body">
+        <div *ngIf="listaEquipos.length === 0" class="terminal-line">Buscando señales...</div>
+        <div *ngFor="let equipo of listaEquipos" class="terminal-line">
+          <span class="term-prompt">></span>
+          <span class="term-name">{{ equipo.nombre_equipo }}</span>
+          <span class="term-spec">[{{ equipo.especialidad }}]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" *ngIf="mostrarModal">
+  <div class="modal-content">
+    <div class="modal-accent-line"></div>
+    <div class="modal-icon"><img src="/listo.png" alt="Éxito" class="check-img" /></div>
+    <h2 class="modal-title">ACCESO CONCEDIDO🙈</h2>
+    <p class="modal-description">
+      El escuadrón <strong class="highlight">{{ nombreEquipoRegistrado }}</strong> ha sido indexado en la red.
+    </p>
+    <div class="auto-close-bar"></div>
+    <p class="modal-sub">Cerrando protocolo en 5 segundos...</p>
+    <button (click)="cerrarModal()" class="modal-btn">CERRAR AHORA</button>
+  </div>
+</div>
