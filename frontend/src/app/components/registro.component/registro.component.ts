@@ -37,7 +37,7 @@ export class RegistroComponent implements OnInit, OnDestroy {
 
   ngOnInit() { 
     this.startCountdown();
-    this.startSessionTimer(); // Iniciamos el bloqueo de formulario
+    this.startSessionTimer(); 
     this.obtenerEscuadrones();
   }
 
@@ -46,7 +46,6 @@ export class RegistroComponent implements OnInit, OnDestroy {
     if (this.sessionInterval) clearInterval(this.sessionInterval);
   }
 
-  // --- LÓGICA DEL TEMPORIZADOR DE REGISTRO (REQUISITO) ---
   startSessionTimer() {
     this.sessionInterval = setInterval(() => {
       if (this.tiempoSesion > 0) {

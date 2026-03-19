@@ -1,5 +1,6 @@
 <nav class="navbar-container" [class.scrolled]="isScrolled" [class.menu-open]="isMenuOpen">
   <div class="navbar-content">
+    
     <div class="logo" routerLink="/" (click)="closeMenu()">
       DEVHACK<span class="blue-neon">2026</span>
     </div>
@@ -10,50 +11,31 @@
       <span></span>
     </div>
 
-    <nav class="navbar-container" [class.scrolled]="isScrolled" [class.menu-open]="isMenuOpen">
-      <div class="navbar-content">
-        <div class="logo" routerLink="/" (click)="closeMenu()">
-          DEVHACK<span class="blue-neon">2026</span>
-        </div>
+    <div class="nav-content-right" [class.show]="isMenuOpen">
+      <ul class="nav-menu">
+        <li>
+          <a routerLink="/" 
+             routerLinkActive="active" 
+             [routerLinkActiveOptions]="{ exact: true }" 
+             (click)="closeMenu()" 
+             class="nav-link">Inicio</a>
+        </li>
+        <li>
+          <a routerLink="/informacion" 
+             routerLinkActive="active" 
+             (click)="closeMenu()" 
+             class="nav-link">Información</a>
+        </li>
+      </ul>
 
-        <div class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-
-        <div class="nav-content-right" [class.show]="isMenuOpen">
-          <ul class="nav-menu">
-            <li>
-              <a
-                routerLink="/"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }"
-                (click)="closeMenu()"
-                class="nav-link"
-                >Inicio</a
-              >
-            </li>
-            <li>
-              <a
-                routerLink="/informacion"
-                routerLinkActive="active"
-                (click)="closeMenu()"
-                class="nav-link"
-                >Información</a
-              >
-            </li>
-          </ul>
-
-          <div class="nav-actions">
-            <button class="btn-glass" routerLink="/registro" (click)="closeMenu()">
-              REGISTRAR AHORA
-            </button>
-          </div>
-        </div>
+      <div class="nav-actions">
+        <button class="btn-glass" routerLink="/registro" (click)="closeMenu()">
+          REGISTRAR AHORA
+        </button>
       </div>
-    </nav>
+    </div>
 
     <div class="menu-overlay" *ngIf="isMenuOpen" (click)="closeMenu()"></div>
+
   </div>
 </nav>
